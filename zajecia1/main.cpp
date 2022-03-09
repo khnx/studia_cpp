@@ -6,7 +6,7 @@
 #define ARR_T 64
 #define ARR_IN 64
 
-int main(int argc, char const *argv[]) {
+int main() {
   
   // Print an array telling Ala
   char ala_arr[ARR_ALA] = {
