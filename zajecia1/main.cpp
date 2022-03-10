@@ -25,7 +25,7 @@ int main() {
 
   std::cout << arr_t << std::endl;
 
-  // Read from stdin to to an array and print it out to stdout.
+  // Read from stdin to an array and print it out to stdout.
   // char arr_in[ARR_IN];
   // std::cin.getline(arr_in, 6);
   // std::cout << arr_in << std::endl;
