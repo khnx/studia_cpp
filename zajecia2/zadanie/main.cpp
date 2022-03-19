@@ -5,7 +5,9 @@
 
 int main() {
   
-  
+  Mixer TheMixer{};
+
+  TheMixer.log_state();
 
   exit(EXIT_SUCCESS);
 }
