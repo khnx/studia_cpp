@@ -37,11 +37,11 @@ public:
   bool stop();                    // Stop the mixing.
   bool resume();                  // Continue previously stopped mixing.
   bool abort();                   // Abort the mixing.
-  bool switch_cover(std::string);// Close/ open the cover.
-  int set_time(int t);            // Set the time for which mixing continues.
+  bool switch_cover(std::string); // Close/ open the cover.
+  int set_time(int);              // Set the time for which mixing continues.
   int time_up();                  // Increase time by 1.
   int time_down();                // Decrease time by 1.
-  int set_temp(int t);            // Set the temperature.
+  int set_temp(int);              // Set the temperature.
   int temp_up();                  // Increase time by 1.
   int temp_down();                // Decrease time by 1.
   int rpm_up();                   // Increase the rotation by 1.
