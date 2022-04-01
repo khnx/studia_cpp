@@ -1,13 +1,16 @@
-all: clear main.o main invoke
+all: clear main.o PersonClass.o main do
+
+PersonClass.o: classes/PersonClass.cpp
+	g++ -c -std=c++11 -Wall -Werror classes/PersonClass.cpp -o classes/PersonClass.o -lm
+
+main.o: main.cpp
+	g++ -c -std=c++11 -Wall -Werror main.cpp -o main.o -lm
+
+main: main.o classes/PersonClass.o
+	g++ main.o classes/PersonClass.o -o main
+
+do: main
+	./main
 
 clear:
 	clear
-
-main.o: main.cpp
-	g++ -std=c++11 -Werror -Wall -c -O3 main.cpp -o main.o
-
-main: main.o
-	g++ main.o -o main
-
-invoke: main
-	./main
