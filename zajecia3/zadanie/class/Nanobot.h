@@ -21,9 +21,14 @@ private:
     double latitude;  // [m].
     double longitude; // [m].
   } gps;
-  gps position;       // Position [m].
-  const double range; // Range [m].
+  gps position;       // [m].
+  const double range; // [m].
   double rotation;    // Rotation around vertical axis [deg].
+
+  // Frequency.
+  double frequency;           // What frequency to use to communicate with [Hz].
+  const double min_frequency; // Min frequency that's available [Hz].
+  const double max_frequency; // Max frequency that's available [Hz].
 
   // Radiation.
   double radiation;                    // Latest radiation value [Sv].
@@ -38,15 +43,15 @@ private:
   const double max_radiation_interval; // Max time between samplings.
 
   // Shared.
+  // Pointers, so there's no need to keep track of updating values.
   typedef struct {
-    int id;
-    double radiation;     // [Sv].
-    double radiation_avg; // [Sv].
-    gps position;         // [m].
+    const int *id;
+    double *frequency;     // [Hz].
+    double *radiation;     // [Sv].
+    double *radiation_avg; // [Sv].
+    gps *position;         // [m].
   } _bot_info;
   static vector<_bot_info> bot_info; // Store info about all bots.
-  void update_bot_info(const int id, double radiation, double radiation_avg,
-                       gps position);
 
 public:
   // Move in relation to current position.
@@ -54,10 +59,14 @@ public:
   gps set_position(double r = 1.0f,
                    double theta = 0.0f); // Set relative position.
 
+  // Frequency.
+  double set_frequency(double frequency); // [Hz].
+
   // Radiation.
-  double set_radiation();
-  void reset_radiation_count();
-  double set_radiation_sample_interval(double timespan = 0.1f);
+  double set_radiation();       // Check radiation.
+  void reset_radiation_count(); // Reset radiation measurments.
+  double set_radiation_sample_interval(
+      double timespan = 0.1f); // Set time between two radiation samplings.
 
   // Family.
   int find_nearest_relative(); // Find position of the closest nanobot.

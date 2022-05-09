@@ -3,13 +3,16 @@
 vector<Nanobot::_bot_info> Nanobot::bot_info;
 
 Nanobot::Nanobot()
-    : id(bot_info.size() + 1), range(1e5), min_radiation(1e-6),
-      max_radiation(1e3), min_radiation_interval(0.001f),
-      max_radiation_interval(3600.0f) {
+    : id(bot_info.size() + 1), range(1e5), min_frequency(3.0f),
+      max_frequency(3e8f), min_radiation(1e-6), max_radiation(1e3),
+      min_radiation_interval(0.001f), max_radiation_interval(3600.0f) {
 
   // Position.
-  this->position = {0.0f, 0.0f};
+  this->position = {0.0f, 0.0f}; // Spawn.
   this->rotation = 0.0f;
+
+  // Frequency.
+  this->frequency = 3e3f;
 
   // Radiation.
   this->radiation = 0.0f;
@@ -20,26 +23,16 @@ Nanobot::Nanobot()
   this->radiation_sample_interval = 0.1;
 
   // Shared.
-  this->bot_info.push_back(
-      {this->id, this->radiation, this->radiation_avg, this->position});
+  this->bot_info.push_back({&(this->id), &(this->frequency), &(this->radiation),
+                            &(this->radiation_avg), &(this->position)});
 }
 
 Nanobot::~Nanobot() {
   // Remove id from the list.
   for (size_t i = 0; i < this->bot_info.size(); i++)
-    if (this->id == this->bot_info[i].id) {
+    if (this->id == *(this->bot_info[i].id)) {
       this->bot_info.erase(this->bot_info.begin() + i);
       break;
-    }
-}
-
-void Nanobot::update_bot_info(const int id, double radiation,
-                              double radiation_avg, gps position) {
-  for (size_t i = 0; i < this->bot_info.size(); i++)
-    if (id == this->bot_info[i].id) {
-      this->bot_info[i].radiation = radiation;
-      this->bot_info[i].radiation_avg = radiation_avg;
-      this->bot_info[i].position = position;
     }
 }
 
@@ -52,7 +45,7 @@ double Nanobot::set_rotation(double theta) {
 
 Nanobot::gps Nanobot::set_position(double r, double theta) {
   if (abs(r) > this->range) {
-    cerr << "Error: Movement Too Far Away.\n";
+    cerr << "Error: You Want To Move Too Far Away.\n";
     return {-1, -1};
   }
 
@@ -62,11 +55,15 @@ Nanobot::gps Nanobot::set_position(double r, double theta) {
       this->position.latitude + r * (double)cos(this->rotation * PI / 180),
       this->position.longitude + r * (double)sin(this->rotation * PI / 180)};
 
-  // Update shared info.
-  update_bot_info(this->id, this->radiation, this->radiation_avg,
-                  this->position);
-
   return position;
+}
+
+double Nanobot::set_frequency(double frequency) {
+  if (frequency < this->min_frequency || frequency > this->max_frequency) {
+    cerr << "Error: Invalid Frequency. I stay with the last one!\n";
+    return -1.0;
+  }
+  return this->frequency = frequency;
 }
 
 double Nanobot::set_radiation() {
@@ -92,10 +89,6 @@ double Nanobot::set_radiation() {
   this->radiation_avg = radiation_total / radiation_no_samples;
 
   this->radiation = radiation;
-
-  // Update shared info.
-  update_bot_info(this->id, this->radiation, this->radiation_avg,
-                  this->position);
 
   return this->radiation;
 }
@@ -124,28 +117,33 @@ int Nanobot::find_nearest_relative() {
   double dist;         // Distance between each bot and the bot.
   gps position;
 
+  if (bot_info.size() == 1) {
+    cerr << "You're the only one!\n";
+    return -1;
+  }
+
   dist_bot =
       sqrt(pow(this->position.latitude, 2) + pow(this->position.longitude, 2));
 
   for (size_t i = 0; i < this->bot_info.size(); i++) {
-    if (this->id == this->bot_info[i].id)
+    if (this->id == *(this->bot_info[i].id))
       continue;
 
-    dist_each = sqrt(pow(this->bot_info[i].position.latitude, 2) +
-                     pow(this->bot_info[i].position.longitude, 2));
+    dist_each = sqrt(pow(this->bot_info[i].position->latitude, 2) +
+                     pow(this->bot_info[i].position->longitude, 2));
     dist = abs(dist_bot - dist_each);
 
     // Skip itself.
-    if (i == 0 || (i == 1 && this->id == this->bot_info[0].id)) {
+    if (i == 0 || (i == 1 && this->id == *(this->bot_info[0].id))) {
       closest = dist;
-      closest_id = bot_info[i].id;
-      position = bot_info[i].position;
+      closest_id = *(bot_info[i].id);
+      position = *(bot_info[i].position);
     }
 
     if (dist < closest) {
       closest = dist;
-      closest_id = this->bot_info[i].id;
-      position = bot_info[i].position;
+      closest_id = *(this->bot_info[i].id);
+      position = *(bot_info[i].position);
     }
   }
 
@@ -168,37 +166,42 @@ void Nanobot::view_relatives_radiations() {
 }
 
 void Nanobot::log_state_obj() {
-  cout << "--------------------------------------------------\n";
+  cout << "\n--------------------------------------------------\n";
   cout << "Object information:\n";
   cout << "--------------------------------------------------\n";
 
-  cout << "Id: " << this->id << endl;
-  cout << "Position: (" << this->position.latitude << ", "
-       << this->position.longitude << ") [m]" << endl;
-  cout << "Rotation: " << rotation << " [deg]" << endl;
-  cout << "Radiation: " << this->radiation << " [Sv]" << endl;
-  cout << "Total radiation suffered since last reset: " << radiation_total
-       << " [Sv]" << endl;
-  cout << "Total radiation suffered in it's lifespan: "
-       << radiation_lifespan_total << " [Sv]" << endl;
-  cout << "Number of radiation samples taken since last reset: "
-       << radiation_no_samples << endl;
-  cout << "Interval between taking samples: " << radiation_sample_interval
-       << " [s]" << endl;
+  cout << this->id << " - Id\n";
+  cout << "(" << this->position.latitude << ", " << this->position.longitude
+       << ") [m] - Position\n";
+  cout << this->rotation << " [deg] - Rotation\n";
+  cout << this->frequency << " [Hz] - Frequency\n";
+  cout << this->radiation << " [Sv] - Radiation\n";
+  cout << this->radiation_total
+       << " [Sv] - Total radiation suffered since last reset\n";
+  cout << this->radiation_lifespan_total
+       << " [Sv] - Total radiation suffered in it's lifespan\n";
+  cout << this->radiation_no_samples
+       << " - Number of radiation samples taken since last reset\n";
+  cout << this->radiation_sample_interval
+       << " [s] - Interval between taking samples\n";
+  cout << "--------------------------------------------------\n\n";
 }
 
 void Nanobot::log_state() {
-  cout << "--------------------------------------------------\n";
+  cout << "\n--------------------------------------------------\n";
   cout << "Class information:\n";
   cout << "--------------------------------------------------\n";
 
   for (size_t i = 0; i < bot_info.size(); i++) {
-    cout << "Id: " << bot_info[i].id << endl;
-    cout << "Radiation: " << bot_info[i].radiation << " [Sv]" << endl;
-    cout << "Radiation Average: " << bot_info[i].radiation_avg << " [Sv]"
+    cout << "Id: " << *(bot_info[i].id) << endl;
+    cout << "Frequency: " << *(bot_info[i].frequency) << " [Hz]" << endl;
+    cout << "Radiation: " << *(bot_info[i].radiation) << " [Sv]" << endl;
+    cout << "Radiation Average: " << *(bot_info[i].radiation_avg) << " [Sv]"
          << endl;
-    cout << "Position: (" << bot_info[i].position.latitude << ", "
-         << bot_info[i].position.longitude << ") [m]" << endl;
-    cout << "-----" << endl;
+    cout << "Position: (" << bot_info[i].position->latitude << ", "
+         << bot_info[i].position->longitude << ") [m]" << endl;
+    if (i != bot_info.size() - 1)
+      cout << "-----" << endl;
   }
+  cout << "--------------------------------------------------\n\n";
 }
