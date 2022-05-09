@@ -43,20 +43,20 @@ void Nanobot::update_bot_info(const int id, double radiation,
     }
 }
 
-double Nanobot::set_rotation(double tetha) {
-  int sign = signbit(tetha) == 0 ? 1 : -1;
+double Nanobot::set_rotation(double theta) {
+  int sign = signbit(theta) == 0 ? 1 : -1;
   return this->rotation =
-             sign * (this->rotation + (abs(tetha) - abs(floor(tetha / 360.0)) *
+             sign * (this->rotation + (abs(theta) - abs(floor(theta / 360.0)) *
                                                         360)); // Normalize.
 }
 
-Nanobot::gps Nanobot::set_position(double r, double tetha) {
+Nanobot::gps Nanobot::set_position(double r, double theta) {
   if (abs(r) > this->range) {
     cerr << "Error: Movement Too Far Away.\n";
     return {-1, -1};
   }
 
-  set_rotation(tetha);
+  set_rotation(theta);
 
   this->position = {
       this->position.latitude + r * (double)cos(this->rotation * PI / 180),

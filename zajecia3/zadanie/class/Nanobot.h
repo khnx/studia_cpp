@@ -50,9 +50,9 @@ private:
 
 public:
   // Move in relation to current position.
-  double set_rotation(double tetha = 90.0f); // Set relative rotation.
+  double set_rotation(double theta = 90.0f); // Set relative rotation.
   gps set_position(double r = 1.0f,
-                   double tetha = 0.0f); // Set relative position.
+                   double theta = 0.0f); // Set relative position.
 
   // Radiation.
   double set_radiation();
