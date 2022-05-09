@@ -86,7 +86,7 @@ double Nanobot::set_radiation() {
   this->radiation_total += radiation;
   this->radiation_lifespan_total += radiation;
   this->radiation_no_samples++;
-  this->radiation_avg = radiation_total / radiation_no_samples;
+  this->radiation_avg = this->radiation_total / this->radiation_no_samples;
 
   this->radiation = radiation;
 
@@ -136,14 +136,14 @@ int Nanobot::find_nearest_relative() {
     // Skip itself.
     if (i == 0 || (i == 1 && this->id == *(this->bot_info[0].id))) {
       closest = dist;
-      closest_id = *(bot_info[i].id);
-      position = *(bot_info[i].position);
+      closest_id = *(this->bot_info[i].id);
+      position = *(this->bot_info[i].position);
     }
 
     if (dist < closest) {
       closest = dist;
       closest_id = *(this->bot_info[i].id);
-      position = *(bot_info[i].position);
+      position = *(this->bot_info[i].position);
     }
   }
 
@@ -155,14 +155,6 @@ int Nanobot::find_nearest_relative() {
   }
 
   return closest_id;
-}
-
-void Nanobot::view_relatives_radiations() {
-  cout << "Radiation of all nanobots:\n";
-  for (size_t i = 0; i < bot_info.size(); i++) {
-    cout << "[id: " << bot_info[i].id
-         << "] : [radiation: " << bot_info[i].radiation << "]\n";
-  }
 }
 
 void Nanobot::log_state_obj() {
@@ -204,4 +196,12 @@ void Nanobot::log_state() {
       cout << "-----" << endl;
   }
   cout << "--------------------------------------------------\n\n";
+}
+
+void Nanobot::view_relatives_radiations() {
+  cout << "Radiation of all nanobots:\n";
+  for (size_t i = 0; i < bot_info.size(); i++) {
+    cout << "[id: " << bot_info[i].id
+         << "] : [radiation: " << bot_info[i].radiation << "]\n";
+  }
 }
