@@ -32,6 +32,7 @@
 4. Division
 
       `(a, bi)/(c, di) = (a + bi)(c - di)/(c^2 + d^2)`
+      
       `((ac - bd) / (c^2 + d^2), ((ad + bc) / (c^2 + d^2)) i)`
 
 ## Functions
