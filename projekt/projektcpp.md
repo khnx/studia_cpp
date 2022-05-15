@@ -3,12 +3,12 @@
 ## Zalożenia
 
 Markup :
-        - szablon klas punkt, wektor
-        - każda klasa ma obsłużyć twór 1, 2 lub 3 argumentowy
+        1. szablon klas punkt, wektor
+        2. każda klasa ma obsłużyć twór 1, 2 lub 3 argumentowy
 
           u(1,2,3), v(4,2), w
 
-        - Operacje, które zwracają zawsze nowy twór:
+        3. Operacje, które zwracają zawsze nowy twór:
           - utworzenie wektora
           - translacja o wektor
           - dodawanie wektorów
