@@ -2,6 +2,7 @@
 
 ## Zalożenia
 
+Markup : 
   * szablon klas punkt, wektor
   * każda klasa ma obsłużyć twór 1, 2 lub 3 argumentowy
 
