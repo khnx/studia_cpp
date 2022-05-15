@@ -19,20 +19,20 @@
 
 1. Addition
 
-    (a, bi) + (c, di) = (a+c, (b+d)i)
+      (a, bi) + (c, di) = (a+c, (b+d)i)
 
 2. Substraction
 
-    (a, bi) - (c, di) = (a-c, (b-d)i)
+      (a, bi) - (c, di) = (a-c, (b-d)i)
 
 3. Multiplication
 
-    (a, bi)(c, di) = (ac - bd, (ad + bc)i).
+      (a, bi)(c, di) = (ac - bd, (ad + bc)i).
 
 4. Division
 
-    (a, bi)/(c, di) = (a + bi)(c - di)/(c^2 + d^2).
-    ((ac - bd) / (c^2 + d^2), ((ad + bc) / (c^2 + d^2)) i)
+      (a, bi)/(c, di) = (a + bi)(c - di)/(c^2 + d^2).
+      ((ac - bd) / (c^2 + d^2), ((ad + bc) / (c^2 + d^2)) i)
 
 ## Functions
 
