@@ -2,10 +2,10 @@
 
 ## Zalożenia
 
-Markup :
+<!-- Markup : -->
 
         1. szablon klas punkt, wektor
-        
+
         2. każda klasa ma obsłużyć twór 1, 2 lub 3 argumentowy
 
           u(1,2,3), v(4,2), w
