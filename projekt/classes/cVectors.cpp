@@ -1,4 +1,4 @@
 #include "cVectors.h"
 
-cVectors::cVectors() {}
-cVectors::~cVectors() {}
+template <class T> cVectors<T>::cVectors() {}
+template <class T> cVectors<T>::~cVectors() {}

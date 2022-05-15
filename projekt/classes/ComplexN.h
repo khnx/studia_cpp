@@ -32,7 +32,7 @@ public:
   ComplexN(T = 0, T = 0);
   ~ComplexN();
 
-  // Log State.
+  // Display complex number.
   friend ostream &operator<<(ostream &out, const ComplexN<T> z) {
     if (z.re != 0 && z.im != 0)
       cout << "(" << z.re << ", " << z.im << "i)";

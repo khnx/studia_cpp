@@ -1,7 +1,7 @@
 #ifndef CLASS_VECTORS
 #define CLASS_VECTORS
 
-class cVectors {
+template <class T> class cVectors {
 protected:
 private:
 public:
