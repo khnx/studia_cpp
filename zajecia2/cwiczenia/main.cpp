@@ -5,14 +5,16 @@
   Napisać klasę Mikser, dla miksera przemysłowego.
 */
 
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 
 #include "classes/Tv.h"
 
 int main() {
-  
-  std::cout << "Hello UwU!" << std::endl;
+  Tv s(4);
+
+  int i = 7;
+  std::cout << i++ ++;
 
   exit(EXIT_SUCCESS);
 }
