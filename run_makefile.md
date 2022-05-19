@@ -61,6 +61,6 @@ Dalej, w PowerShell (upewnij się, że jesteś w folderze, w którym znajduje si
   make
   ```
 
-## Linux
+## Linux, Mac
 
 Użytkownik powinien wiedzieć, jak używać make.
