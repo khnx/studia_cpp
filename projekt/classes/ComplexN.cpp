@@ -68,15 +68,15 @@ template <class T> ComplexN<T>::ComplexN(T re, T im) {
   this->im = im;
 }
 
+template <typename T> T ComplexN<T>::norm_square() {
+  ComplexN<T> temp = *this * (*this).conjugate();
+  return temp.re;
+}
+
 template <typename T> T ComplexN<T>::norm() {
   T temp;
   temp = sqrt(static_cast<double>(this->re * this->re + this->im * this->im));
   return temp;
-}
-
-template <typename T> T ComplexN<T>::norm_square() {
-  ComplexN<T> temp = *this * (*this).conjugate();
-  return temp.re;
 }
 
 template <typename T> T ComplexN<T>::arg() {
@@ -89,9 +89,9 @@ template <typename T> T ComplexN<T>::arg() {
 
 template <typename T> ComplexN<T>::~ComplexN() {}
 
-// Implicit declaration of all available types.
+// Explicit declaration of all available types.
 template class ComplexN<int>;
-template class ComplexN<long int>;
-template class ComplexN<long long int>;
+template class ComplexN<long>;
+template class ComplexN<long long>;
 template class ComplexN<float>;
 template class ComplexN<double>;

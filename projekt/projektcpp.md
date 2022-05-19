@@ -17,3 +17,40 @@
       - wektor przeciwny
       - mnożenie liczby przez wektor
       - długość wektora
+
+## Pytania ogólne
+
+1. Jakie typy powinny być wspierane przez szablony?
+
+## Punkt
+
+### Cechy
+
+1. Podobny do klasy liczby zespolone.
+
+      - Czy obsługuje liczby zespolone?
+      - Czy potrzebna klasa "liczby zespolone", czy użyć biblioteki complex?
+
+2. Zawiera 3 opcjonalne współrzędne.
+
+      - Czy współrzędne powinny być przekazywane "na sztywno", tj. 3 argumenty, z wartościami domyślnymi.
+      - II opcja: przekazanie wartości współrzędnych przez obiekt klasy vector lub listę inicjalizacyjną; zmienna ilość parametrów bez obciążenia pustymi wartościami.
+
+3. Pozycja domyślna to początek układu współrzednych.
+      
+      - Użyć domyślnego początku?
+      - Początek dla układu lini prostej, płaszczyzny, przestrzeni?
+
+## Wektor
+
+### Cechy
+
+1. Zachowanie pozycji.
+
+      - Czy wektor powinien być zawieszony w punkcie początkowym i kończyć się w punkcje końcowym?
+      - Czy wektor powinien być standaryzowany do początku układu współrzędnych.
+
+2. Sposoby tworzenia wektorów:
+
+			- Współrzędne wektora.
+			- Dwa punkty, wyliczyć różnicę, zaczepić w początku układu współrzędnych.

@@ -25,8 +25,8 @@ public:
   ComplexN<T> operator^(const size_t);        // Natural powerset.
 
   ComplexN<T> conjugate(); // Complex conjugate number.
-  T norm();                // Norm function
   T norm_square();         // Square norm function.
+  T norm();                // Norm function
   T arg();                 // Argument function.
 
   ComplexN(T = 0, T = 0);
