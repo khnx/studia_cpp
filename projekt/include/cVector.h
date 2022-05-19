@@ -1,6 +1,7 @@
 #ifndef CLASS_VECTOR
 #define CLASS_VECTOR
 
+#include <cmath>
 #include <iostream>
 #include <vector>
 
