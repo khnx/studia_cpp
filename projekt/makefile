@@ -1,22 +1,27 @@
-all: clear ComplexN.o cPoint.o cVector.o main.o main invoke
+BINARY=bin
+CODEDIRS=. lib
+INCDIRS=. ./include/
 
-clear:
-	clear
+CC=g++
+OPT=-O0
+DEPFLAGS=-MP -MD
+CFLAGS=-Wall -Werror -g $(foreach D,$(INCDIRS),-I$(D)) $(OPT) $(DEPFLAGS)
 
-ComplexN.o: classes/ComplexN.cpp
-	g++ -std=c++11 -Werror -Wall -O3 -c classes/ComplexN.cpp -o obj/ComplexN.o
+CFILES=$(foreach D,$(CODEDIRS),$(wildcard $(D)/*.cpp))
 
-cVector.o: classes/cVector.cpp
-	g++ -std=c++11 -Werror -Wall -O3 -c classes/cVector.cpp -o obj/cVector.o
+OBJECTS=$(patsubst %.cpp,%.o,$(CFILES))
+DEPFILES=$(patsubst %.cpp,%.d,$(CFILES))
 
-cPoint.o: classes/cPoint.cpp
-	g++ -std=c++11 -Werror -Wall -O3 -c classes/cPoint.cpp -o obj/cPoint.o
+all:$(BINARY) invoke
 
-main.o: main.cpp
-	g++ -std=c++11 -Werror -Wall -O3 -c main.cpp -o obj/main.o
+$(BINARY):$(OBJECTS)
+	$(CC) -o $@ $^
 
-main: obj/ComplexN.o obj/cVector.o obj/main.o
-	g++ obj/ComplexN.o obj/cPoint.o obj/cVector.o obj/main.o -o main
+%.o:%.cpp
+	$(CC) $(CFLAGS) -c -o $@ $<
 
-invoke: main
-	./main
+clean:
+	rm -rf $(BINARY) $(OBJECTS) $(DEPFILES)
+
+invoke: bin
+	./bin

@@ -1,4 +1,4 @@
-#include "cPoint.h"
+#include "../include/cPoint.h"
 
 template <typename T> cPoint<T> cPoint<T>::operator+(const cPoint<T> &pt) {
   if (this->pts.size() != pt.pts.size()) {

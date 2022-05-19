@@ -17,7 +17,7 @@ public:
   cPoint<T> get_origin();
   bool set_origin(cPoint<T>);
 
-  cVector<T> operator+(const cVector &);
+  cVector<T> operator+(cVector &);
 
   cVector(vector<T> = {0, 0, 0}); // Vector with coordinates.
   cVector(vector<T>, cPoint<T>);  // Vector with coordinates + starting point.

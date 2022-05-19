@@ -1,4 +1,4 @@
-#include "cVector.h"
+#include "../include/cVector.h"
 
 template <class T> vector<T> cVector<T>::get_vec() { return this->vec; }
 
@@ -24,12 +24,22 @@ template <class T> bool cVector<T>::set_origin(cPoint<T> pt) {
   return true;
 }
 
-template <class T> cVector<T> cVector<T>::operator+(const cVector<T> &v) {
+template <class T> cVector<T> cVector<T>::operator+(cVector<T> &v) {
+  // Allow only addition of vectors of the same size.
   if (this->vec.size() != v.get_vec().size()) {
     cerr << "Error: Attempt to Add Vectors of Incompatible Sizes.\n";
     return *this;
   }
-  // TODO.
+
+  cVector temp(*this);
+
+  // Add vectors.
+  vector<T> v_vec = v.get_vec();
+  for (size_t i = 0; i < vec.size(); i++) {
+    temp.vec[i] = this->vec[i] + v_vec[i];
+  }
+
+  return temp;
 }
 
 template <class T> cVector<T>::cVector(vector<T> vec) {
@@ -72,6 +82,7 @@ template class cVector<long>;
 template class cVector<long long>;
 template class cVector<float>;
 template class cVector<double>;
+
 template class cVector<ComplexN<int>>;
 template class cVector<ComplexN<long>>;
 template class cVector<ComplexN<long long>>;

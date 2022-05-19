@@ -24,7 +24,7 @@
 
 ## Punkt
 
-### Cechy
+### Cechy punktu
 
 1. Podobny do klasy liczby zespolone.
 
@@ -37,20 +37,21 @@
       - II opcja: przekazanie wartości współrzędnych przez obiekt klasy vector lub listę inicjalizacyjną; zmienna ilość parametrów bez obciążenia pustymi wartościami.
 
 3. Pozycja domyślna to początek układu współrzednych.
-      
+
       - Użyć domyślnego początku?
       - Początek dla układu lini prostej, płaszczyzny, przestrzeni?
 
 ## Wektor
 
-### Cechy
+### Cechy wektora
 
 1. Zachowanie pozycji.
 
       - Czy wektor powinien być zawieszony w punkcie początkowym i kończyć się w punkcje końcowym?
       - Czy wektor powinien być standaryzowany do początku układu współrzędnych.
+      - Czy trzymać współrzędne punktu zaczepienia wektora?
 
 2. Sposoby tworzenia wektorów:
 
-			- Współrzędne wektora.
-			- Dwa punkty, wyliczyć różnicę, zaczepić w początku układu współrzędnych.
+   - Współrzędne wektora.
+   - Dwa punkty, wyliczyć różnicę, zaczepić w początku układu współrzędnych.
