@@ -7,8 +7,6 @@ Aby zainstalować make, potrzebny jest menedżer pakietów, który tego dokona. 
 
 Wejść na stronę [tutaj](https://chocolatey.org/install){:target="\_blank"} i podążać za instrukcjami.
 
-<a href="https://chocolatey.org/install" target="_blank">Hello, world!</a>
-
 Alternatywnie, włączyć program PowerShell jako administrator. W Start wpisujemy PowerShell; pojawi się kilka opcji, zaznaczyć Windows PowerShell (będzie podświetlone na niebiesko). Na pasku po prawej pojawi się kilka opcji - wybrać Run as Administrator (włącz jako administrator).
 
 W PowerShellu wpisać polecenie
