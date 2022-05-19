@@ -52,7 +52,9 @@
 1. Zachowanie pozycji.
 
 	- Czy wektor powinien być zawieszony w punkcie początkowym i kończyć się w punkcje końcowym?
+
 	- Czy wektor powinien być standaryzowany do początku układu współrzędnych.
+	
 	- Czy trzymać współrzędne punktu zaczepienia wektora?
 
 2. Sposoby tworzenia wektorów:
