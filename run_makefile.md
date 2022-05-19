@@ -17,35 +17,49 @@ W PowerShellu wpisać polecenie
 
 Jeżeli program odpowie "Restricted", wpisać
 
-  `Set-ExecutionPolicy AllSigned`
+  ```powershell
+  Set-ExecutionPolicy AllSigned
+  ```
 
 Następnie wpisać
 
-  `Y`
+  ```powershell
+  Y
+  ```
 
 Dalej, wkleić podane polecenie:
 
-  `Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))`
+  ```powershell
+  Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+  ```
   
 Po kilku sekundach Chocolatey powinien być zainstalowany. Aby to sprawdzić, należy wpisać:
 
-  `choco -?`
+  ```powershell
+  choco -?
+  ```
 
 Skoro Chocolatey jest już zainstalowany, można zainstalować make.
 
 Należy wpisać w PowerShell:
    
-   `choco install make`
+   ```powershell
+   choco install make
+   ```
   
 Make jest już zainstalowany.
 
 Aby teraz odpalić program, zamknij sesję PowerShell (nie ma potrzeby, by dłużej używać go jako administrator) i włącz PowerShell (jako zwykły użytkownik - czyli domyślnie). Nawiguj do odpowiedniego folderu poleceniem cd, np.:
 
-  `cd "C:\Users\radek\Desktop\studia_cpp-main\projekt\"`
+  ```powershell
+  cd "C:\Users\radek\Desktop\studia_cpp-main\projekt\"
+  ```
   
 Dalej, w PowerShell (upewnij się, że jesteś w folderze, w którym znajduje się plik makefile) wpisz
 
-  `make`
+  ```powershell
+  make
+  ```
 
 ## Linux
 
