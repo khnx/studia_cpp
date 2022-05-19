@@ -11,7 +11,9 @@ Alternatywnie, włączyć program PowerShell jako administrator. W Start wpisuje
 
 W PowerShellu wpisać polecenie
 
-   `Get-ExecutionPolicy`
+   ``` powershell
+   Get-ExecutionPolicy
+   ```
 
 Jeżeli program odpowie "Restricted", wpisać
 
