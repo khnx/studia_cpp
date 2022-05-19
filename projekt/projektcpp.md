@@ -24,8 +24,6 @@
 
 ## Punkt
 
-### Cechy punktu
-
 1. Podobny do klasy liczby zespolone.
 
       - Czy obsługuje liczby zespolone?
@@ -41,9 +39,12 @@
       - Użyć domyślnego początku?
       - Początek dla układu lini prostej, płaszczyzny, przestrzeni?
 
-## Wektor
+4. Dozwolone operacje.
 
-### Cechy wektora
+   - Dodawanie.
+   - Odejmowanie.
+
+## Wektor
 
 1. Zachowanie pozycji.
 
@@ -53,5 +54,8 @@
 
 2. Sposoby tworzenia wektorów:
 
-   - Współrzędne wektora.
-   - Dwa punkty, wyliczyć różnicę, zaczepić w początku układu współrzędnych.
+      - Współrzędne wektora.
+      - Współrzędne wektora, punkt zaczepienia.
+      - Dwa punkty, wyliczyć różnicę, zaczepić w pierwszym punkcie.
+
+3. Dozwolone operacje.

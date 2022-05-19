@@ -40,6 +40,13 @@ int main() {
   cout << "vz2: " << vz2 << endl;
 
   cout << "vz1 + vz2: " << vz1 + vz2 << endl;
+  cout << "vz1 - vz2: " << vz1 - vz2 << endl;
+
+  cVector<ComplexN<double>> vcp;
+
+  vcp = vz1;
+
+  cout << "vcp: " << vcp << endl;
 
   return 0;
 }

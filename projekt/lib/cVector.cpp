@@ -42,6 +42,30 @@ template <class T> cVector<T> cVector<T>::operator+(cVector<T> &v) {
   return temp;
 }
 
+template <class T> cVector<T> cVector<T>::operator-(cVector<T> &v) {
+  // Allow only addition of vectors of the same size.
+  if (this->vec.size() != v.get_vec().size()) {
+    cerr << "Error: Attempt to Add Vectors of Incompatible Sizes.\n";
+    return *this;
+  }
+
+  cVector temp(*this);
+
+  // Add vectors.
+  vector<T> v_vec = v.get_vec();
+  for (size_t i = 0; i < vec.size(); i++) {
+    temp.vec[i] = this->vec[i] - v_vec[i];
+  }
+
+  return temp;
+}
+
+template <class T> cVector<T> cVector<T>::operator=(cVector<T> &v) {
+  this->vec = v.vec;
+  this->origin = v.origin;
+  return *this;
+}
+
 template <class T> cVector<T>::cVector(vector<T> vec) {
   this->vec = vec;
 
