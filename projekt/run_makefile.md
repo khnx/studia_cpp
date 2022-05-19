@@ -5,7 +5,7 @@ Aby zainstalować make, potrzebny jest menedżer pakietów, który tego dokona. 
 
 ## Instalacja Chocolatey
 
-Wejść na stronę https://chocolatey.org/install i podążać za instrukcjami.
+Wejść na stronę <<https://chocolatey.org/install> target="_blank"> i podążać za instrukcjami.
 
 Alternatywnie, włączyć program PowerShell jako administrator. W Start wpisujemy PowerShell; pojawi się kilka opcji, zaznaczyć Windows PowerShell (będzie podświetlone na niebiesko). Na pasku po prawej pojawi się kilka opcji - wybrać Run as Administrator (włącz jako administrator).
 
@@ -42,7 +42,7 @@ Po kilku sekundach Chocolatey powinien być zainstalowany. Aby to sprawdzić, na
 Skoro Chocolatey jest już zainstalowany, można zainstalować make.
 
 Należy wpisać w PowerShell:
-   
+
    ```powershell
    choco install make
    ```
