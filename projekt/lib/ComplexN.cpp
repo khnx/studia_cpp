@@ -1,5 +1,7 @@
 #include "../include/ComplexN.h"
 
+// -------------------- OPERATORS --------------------
+
 template <typename T> ComplexN<T> ComplexN<T>::operator+(const ComplexN<T> &z) {
   ComplexN temp;
   temp.im = this->im + z.im;
@@ -35,6 +37,17 @@ template <typename T> void ComplexN<T>::operator*=(const ComplexN<T> &z) {
   *this = *this * z;
 }
 
+template <typename T> ComplexN<T> ComplexN<T>::operator*(const T &z) {
+  ComplexN<T> temp;
+  temp.re = this->re * z;
+  temp.im = this->im * z;
+  return temp;
+}
+
+template <typename T> void ComplexN<T>::operator*=(const T &z) {
+  *this = *this * z;
+}
+
 template <typename T> ComplexN<T> ComplexN<T>::operator/(const ComplexN<T> &z) {
   // (a, bi)/(c, di) = (a + bi)(c - di)/(c^2 + d^2).
   // ((ac - bd) / (c^2 + d^2), ((ad + bc) / (c^2 + d^2)) i)
@@ -58,14 +71,11 @@ template <typename T> ComplexN<T> ComplexN<T>::operator^(const size_t pow) {
   return temp;
 }
 
+// -------------------- OTHER FUNCTIONS --------------------
+
 template <typename T> ComplexN<T> ComplexN<T>::conjugate() {
   ComplexN<T> c = {this->re, this->im * (-1)};
   return c;
-}
-
-template <class T> ComplexN<T>::ComplexN(T re, T im) {
-  this->re = re;
-  this->im = im;
 }
 
 template <typename T> T ComplexN<T>::norm_square() {
@@ -87,7 +97,18 @@ template <typename T> T ComplexN<T>::arg() {
   return temp;
 }
 
+// -------------------- CONSTRUCTOR --------------------
+
+template <class T> ComplexN<T>::ComplexN(T re, T im) {
+  this->re = re;
+  this->im = im;
+}
+
+// -------------------- DESTRUCTOR --------------------
+
 template <typename T> ComplexN<T>::~ComplexN() {}
+
+// -------------------- AVAILABLE TYPES --------------------
 
 // Explicit declaration of all available types.
 template class ComplexN<int>;

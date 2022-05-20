@@ -10,7 +10,7 @@
 template <class T> class cVector : private cPoint<T> {
 protected:
   vector<T> vec;    // Free vector.
-  cPoint<T> origin; // Where a vector starts.
+  cPoint<T> origin; // Vector starting point.
 
 public:
   vector<T> get_vec();
@@ -21,6 +21,15 @@ public:
   cVector<T> operator+(cVector &);
   cVector<T> operator-(cVector &);
   cVector<T> operator=(cVector &);
+  cVector<T> operator*(T);
+
+  T norm();
+  T abs();
+  cVector<T> opposite();
+  cVector<T> translate(cVector<T>);
+  T dot_product(cVector<T>, T);
+  T cross_product_theta(cVector<T>);
+  cVector<T> cross_product(cVector<T>);
 
   cVector(vector<T> = {0, 0, 0}); // Vector with coordinates.
   cVector(vector<T>, cPoint<T>);  // Vector with coordinates + starting point.

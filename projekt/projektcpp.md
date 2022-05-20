@@ -52,9 +52,7 @@
 1. Zachowanie pozycji.
 
 	- Czy wektor powinien być zawieszony w punkcie początkowym i kończyć się w punkcje końcowym?
-
 	- Czy wektor powinien być standaryzowany do początku układu współrzędnych.
-	
 	- Czy trzymać współrzędne punktu zaczepienia wektora?
 
 2. Sposoby tworzenia wektorów:
@@ -68,13 +66,55 @@
 	- Dodawanie (dowolny wektor).
 	- Odejmowanie (dowolny wektor).
 	- Translacja (zmiana punktu zaczepienia względem początkowego o wskazany wektor).
-	- Mnożenie skalarne.
+	- Mnożenie wektora przez skalar - skalowanie współrzędnych wektora przez wskazaną liczbę.
+	- Mnożenie skalarne wektorów.
 	- Mnożenie wektorowe z użyciem kąta między wektorami (wektor z 3 składnikami).
-	- Mnożenie wektorowe macierzowe (wektor z 3 składnikami).
+	- Mnożenie wektorowe ze wzoru Sarrusa (wektor z 3 składnikami).
 	- Wektor przeciwny - odwrócenie znaków współrzędnych wektora.
-	- Mnożenie wektora przez liczbę - skalowanie współrzędnych wektora przez wskazaną liczbę.
 	- Długość wektora - norma.
 
 4. Metody.
 
-	- norm() - zwraca normę wektora.
+	- operator + - dodawanie wektorów.
+	Parametry: (wektor)
+	Return: wektor
+
+	- operator - - odejmowanie wektorów.
+	Parametry: (wektor)
+	Return: wektor
+
+	- operator * - mnożenie wektora przez skalar.
+	Parametry: (liczba)
+	Return: wektor
+
+	- operator = - przepisanie cech wektora.
+	Parametry: (wektor)
+	Return: wektor
+
+	- dot_product() - mnożenie skalarne z innym wektorem.
+	Parametry: (wektor)
+	Return: liczba
+
+	- cross_product_theta() - mnożenie wektorowe dwóch wektorów o podany kąt.
+	Parametry: (wektor, kąt)
+	Return: liczba
+
+	- cross_product() - mnożenie dwóch wektorów ze wzoru Sarrusa.
+	Parametry: (wektor)
+	Return: wektor
+
+	- translate() - translacja wektora o wektor.
+	Parametry: (wektor)
+	Return: wektor
+
+	- opposite() - wektor przeciwny.
+	Parametry: ()
+	Return: wektor
+
+	- norm() - kwadrat długości wektora.
+	Parametry: ()
+	Return: liczba
+
+	- abs() - długośc wektora.
+	Parametry: ()
+	Return: liczba

@@ -1,6 +1,7 @@
 #ifndef CLASS_POINT
 #define CLASS_POINT
 
+#include <complex>
 #include <iostream>
 #include <vector>
 

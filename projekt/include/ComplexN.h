@@ -20,6 +20,8 @@ public:
   void operator-=(const ComplexN<T> &);       // Substract from self.
   ComplexN<T> operator*(const ComplexN<T> &); // Multiplication.
   void operator*=(const ComplexN<T> &);       // Multiplication of self.
+  ComplexN<T> operator*(const T &);           // Multiplication by real number.
+  void operator*=(const T &); // Multiplication of self by real number.
   ComplexN<T> operator/(const ComplexN<T> &); // Division.
   void operator/=(const ComplexN<T> &);       // Division of selt.
   ComplexN<T> operator^(const size_t);        // Natural powerset.
@@ -31,6 +33,20 @@ public:
 
   ComplexN(T = 0, T = 0);
   ~ComplexN();
+
+  friend ComplexN<T> cos(ComplexN<T> z) {
+    ComplexN<T> temp;
+    // TODO.
+  }
+
+  // Square root (only one).
+  friend ComplexN<T> sqrt(ComplexN<T> z) {
+    ComplexN<T> temp;
+    temp.re = sqrt(static_cast<double>(
+        (z.re + sqrt(static_cast<double>(z.re * z.re + z.im * z.im))) / 2));
+    temp.im = z.im / 2 / temp.re;
+    return temp;
+  }
 
   // Display complex number.
   friend ostream &operator<<(ostream &out, const ComplexN<T> z) {
